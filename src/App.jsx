@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './App.css';
-import { RiGovernmentFill, RiTeamFill, RiRecycleFill, FaUmbrellaBeach, RiDeleteBinFill } from "react-icons/ri";
+import { RiGovernmentFill, RiTeamFill, RiRecycleFill, RiDeleteBinFill } from "react-icons/ri";
+import { FaUmbrellaBeach } from "react-icons/fa6";
 
 const stakeholderData = {
   "City Government": {
