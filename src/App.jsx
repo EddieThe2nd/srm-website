@@ -1,9 +1,10 @@
 import { useState } from "react";
-// import "remixicon/fonts/remixicon.css";
+import './App.css';
+import { RiGovernmentFill, RiTeamFill, RiRecycleFill, FaUmbrellaBeach, RiDeleteBinFill } from "react-icons/ri";
 
 const stakeholderData = {
   "City Government": {
-    icon: "ri-building-line",
+    icon: <RiGovernmentFill />, 
     description: "Responsible for policymaking and waste management.",
     requirements: [
       "Implement a city-wide plastic ban",
@@ -14,7 +15,7 @@ const stakeholderData = {
     ],
   },
   "Local Businesses": {
-    icon: "ri-team-line",
+    icon: <RiTeamFill />, 
     description: "Balancing sustainability with profitability.",
     requirements: [
       "Access affordable alternatives to plastic packaging",
@@ -25,7 +26,7 @@ const stakeholderData = {
     ],
   },
   "Environmental NGOs": {
-    icon: "ri-recycle-line",
+    icon: <RiRecycleFill />, 
     description: "Advocating for strict environmental regulations.",
     requirements: [
       "Enforce strict penalties for non-compliance",
@@ -36,7 +37,7 @@ const stakeholderData = {
     ],
   },
   "Tourists and Residents": {
-    icon: "ri-sun-umbrella-line",
+    icon: <FaUmbrellaBeach />, 
     description: "Beneficiaries of clean beaches.",
     requirements: [
       "Ensure convenience and accessibility of alternatives",
@@ -47,7 +48,7 @@ const stakeholderData = {
     ],
   },
   "Waste Management Companies": {
-    icon: "ri-delete-bin-line",
+    icon: <RiDeleteBinFill />, 
     description: "Efficient waste collection and recycling.",
     requirements: [
       "Upgrade recycling infrastructure",
@@ -59,64 +60,54 @@ const stakeholderData = {
   },
 };
 
-function StakeholderCard({ title, icon, description, requirements }) {
+const StakeholderCard = ({ title, data }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div
-      className="glass-card p-8 rounded-lg cursor-pointer transition-all hover:scale-105 hover:shadow-lg"
+      className={`stakeholder-card ${isOpen ? 'pop' : ''}`}
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex items-center justify-center w-16 h-16 mb-6 mx-auto">
-        <i className={`${icon} text-3xl text-teal-500`}></i>
+      <div className="card-icon">
+        {data.icon} 
       </div>
-      <h3 className="text-2xl font-semibold text-center text-navy-800 mb-4">
-        {title}
-      </h3>
-      <p className="text-gray-600 text-center mb-6">{description}</p>
-      {isOpen && (
-        <div className="requirements transition-max-height duration-300 ease-in-out">
-          <ul className="space-y-3 text-gray-700">
-            {requirements.map((req, index) => (
-              <li key={index} className="flex items-center">
-                <i className="ri-checkbox-circle-line text-teal-500 mr-2"></i>
-                {req}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <h3 className="stakeholder-name">{title}</h3>
+      <p>{data.description}</p>
+      <div className={`requirements ${isOpen ? 'open' : ''}`}>
+        <ul>
+          {data.requirements.map((req, index) => (
+            <li key={index}>
+              <i className="ri-checkbox-circle-line text-teal-500 mr-2"></i>
+              {req}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
+};
 
-function App() {
+const App = () => {
   return (
-    <div
-      className="min-h-screen bg-cover bg-center py-12"
-      style={{
-        backgroundImage:
-          "url('https://public.readdy.ai/ai/img_res/27cf99e7a5b6bd3b14a25f33cd82b31b.jpg')",
-      }}
-    >
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h1 className="text-4xl font-bold text-center text-teal-600 mb-4">
-          Key Stakeholders
-        </h1>
-        <p className="text-center text-gray-600 mb-4">
-          Here is the link to my detailed interactive stakeholder requirements
+    <div className="app-container">
+      <div className="content">
+      <header className="header">
+        <h1>Saving the Seas: A Collaborative Approach to Reducing Plastic Waste</h1>
+        <p>Addressing plastic waste in Durban through stakeholder collaboration</p>
+      </header>
+        <h1>Key Stakeholders</h1>
+        <a href="https://miro.com/app/board/uXjVIUht8KM=/">Here is the Link to my detailed interactive stakeholder requirements</a>
+        <p className="info">
+          <i className="ri-information-line mr-2"></i> Click on any card to view detailed requirements
         </p>
-        <p className="text-center text-gray-500 text-sm mb-12 flex items-center justify-center">
-          <i className="ri-information-line mr-2"></i>
-          Click on any card to view detailed requirements
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="cards-grid">
           {Object.entries(stakeholderData).map(([title, data]) => (
-            <StakeholderCard key={title} title={title} {...data} />
+            <StakeholderCard key={title} title={title} data={data} />
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;
