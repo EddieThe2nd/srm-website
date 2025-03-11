@@ -97,7 +97,7 @@ const App = () => {
         <p>Addressing plastic waste in Durban through stakeholder collaboration</p>
       </header>
         <h1>Key Stakeholders</h1>
-        <a target="_blank" href="https://miro.com/app/board/uXjVIUht8KM=/">Here is the Link to my detailed interactive stakeholder requirements</a>
+        <a target="_blank" href="https://miro.com/app/board/uXjVIUht8KM=/?share_link_id=325937013588">Here is the Link to my detailed interactive stakeholder requirements</a>
         <p className="info">
           <i className="ri-information-line mr-2"></i> Click on any card to view detailed requirements
         </p>
